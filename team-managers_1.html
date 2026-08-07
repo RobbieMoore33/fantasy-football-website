@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Managers — Paideia Mafia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Bebas+Neue&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181f;
+    --ink-2:#1b232d;
+    --parchment:#efe4c9;
+    --parchment-dim:#b9ad8f;
+    --gold:#c9a227;
+    --gold-bright:#e4c856;
+    --crimson:#7a1f2b;
+    --crimson-bright:#a52a3a;
+    --slate:#8b96a5;
+    --display:'Fraunces', serif;
+    --jersey:'Bebas Neue', sans-serif;
+    --body:'Source Serif 4', serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ===== NAV ===== */
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:36px;
+    padding:22px 24px;
+    border-bottom:1px solid rgba(201,162,39,.3);
+    background:#0e131a;
+  }
+  nav a{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--slate);
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+  }
+  nav a:hover, nav a.active{
+    color:var(--gold);
+    border-bottom-color:var(--gold);
+  }
+
+  /* ===== PAGE HEAD ===== */
+  .page-head{
+    text-align:center;
+    padding:56px 24px 20px;
+  }
+  .page-eyebrow{
+    font-family:var(--mono);
+    letter-spacing:.35em;
+    font-size:11px;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .page-title{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:clamp(36px,7vw,64px);
+  }
+
+  /* ===== MANAGER GRID ===== */
+  .managers-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:50px 24px 90px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(420px,1fr));
+    gap:24px;
+  }
+  .manager-card{
+    background:var(--ink-2);
+    border:1px solid rgba(239,228,201,.12);
+    border-radius:2px;
+    padding:28px;
+  }
+  .manager-top{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:18px;
+  }
+  .avatar{
+    width:64px; height:64px;
+    border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--jersey);
+    font-size:20px;
+    color:var(--gold);
+    flex-shrink:0;
+    background:var(--ink);
+  }
+  .manager-name{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:21px;
+    color:var(--parchment);
+  }
+  .manager-team{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--gold);
+    margin-top:4px;
+  }
+
+  .trophy-case{
+    background:var(--ink);
+    border:1px solid rgba(201,162,39,.25);
+    padding:12px 14px;
+    margin-bottom:16px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .trophy-case-label{
+    width:100%;
+    font-family:var(--mono);
+    font-size:9.5px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-bottom:4px;
+  }
+  .badge{
+    font-family:var(--mono);
+    font-size:11px;
+    padding:5px 9px;
+    border-radius:2px;
+  }
+  .badge.champ{
+    background:rgba(201,162,39,.15);
+    color:var(--gold-bright);
+    border:1px solid rgba(201,162,39,.5);
+  }
+  .badge.runner{
+    background:rgba(139,150,165,.12);
+    color:var(--slate);
+    border:1px solid rgba(139,150,165,.3);
+  }
+  .badge.empty{
+    color:var(--slate);
+    opacity:.6;
+    font-style:italic;
+  }
+
+  .manager-bio{
+    color:var(--parchment-dim);
+    font-size:14.5px;
+    margin-bottom:18px;
+    font-style:italic;
+  }
+
+  .stats-table{
+    width:100%;
+    border-top:1px solid rgba(239,228,201,.1);
+  }
+  .stats-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid rgba(239,228,201,.08);
+  }
+  .stats-label{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--slate);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .stats-value{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:14px;
+  }
+  .stats-value.gold{ color:var(--gold); }
+
+  footer{
+    text-align:center;
+    padding:40px 24px 70px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+
+  @media (max-width:640px){
+    nav{ gap:18px; flex-wrap:wrap; }
+    .manager-card{ padding:22px; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="paideia-mafia.html">Home</a>
+    <a href="team-managers.html" class="active">Managers</a>
+  </nav>
+
+  <div class="page-head">
+    <div class="page-eyebrow">The Owners</div>
+    <div class="page-title">Team Managers</div>
+  </div>
+
+  <div class="managers-wrap" id="managerGrid"></div>
+
+  <footer>Paideia Mafia &middot; Bios &amp; photos are placeholders &mdash; add your own</footer>
+
+<script>
+// ------------------------------------------------------------------
+// LEAGUE HISTORY — keep this in sync with paideia-mafia.html.
+// Everything below (championships, runner-ups, last places) is
+// calculated automatically from these two arrays.
+// ------------------------------------------------------------------
+
+const champions = [
+  { year: 2020, champion: "Jehovah's Thiccness (Conner Kapperman)", runnerUp: "Team Smith (Paxton Smith)" },
+  { year: 2021, champion: "The Thul Shed (Collin Thul)", runnerUp: "Team Ernie Wow Cakes (EJ Crutcher)" },
+  { year: 2022, champion: "Cream Team (Alex Evers)", runnerUp: "Jehovah's Thiccness (Conner Kapperman)" },
+  { year: 2023, champion: "Unsolicited Dak Pics (Robbie Moore)", runnerUp: "Misty Mountain Gools (Eli Coppage)" },
+  { year: 2024, champion: "Team Jones (Gerald Jones)", runnerUp: "The Thul Shed (Collin Thul)" },
+  { year: 2025, champion: "Sons of Ares (Robbie Moore)", runnerUp: "Slim Pickens (Gerald Jones)" },
+];
+
+const wallOfShame = [
+  { year: 2020, name: "O' Block Glory Boys (Robbie Moore)" },
+  { year: 2021, name: "Your Father (JaDarion Derrick)" },
+  { year: 2022, name: "Dick Diamond (JaDarion Derrick)" },
+  { year: 2023, name: "Ducks and Field Goals (Cameron Kapperman)" },
+  { year: 2024, name: "Dick Diamond (JaDarion Derrick)" },
+  { year: 2025, name: "Team Head Bussa's (EJ Crutcher)" },
+];
+
+// ------------------------------------------------------------------
+// CURRENT ROSTER — the 10 managers in the league today.
+// Edit "bio" for each person; photos default to initials until you
+// swap in real images (see note at the bottom of this file).
+// ------------------------------------------------------------------
+
+const managers = [
+  { name: "Robbie Moore", team: "Sons of Ares", bio: "Bio coming soon.", record: "41-40", since: 2020, seasons: 6 },
+  { name: "Conner Kapperman", team: "Jehovah's Thiccness", bio: "Bio coming soon.", record: "46-33", since: 2020, seasons: 6 },
+  { name: "Frank Brogden", team: "Kript Keepers", bio: "Bio coming soon.", record: "40-41", since: 2020, seasons: 6 },
+  { name: "Collin Thul", team: "The Thul Shed", bio: "Bio coming soon.", record: "40-39", since: 2020, seasons: 6 },
+  { name: "Cameron Kapperman", team: "Ducks and Field Goals", bio: "Bio coming soon.", record: "20-22", since: 2023, seasons: 3 },
+  { name: "EJ Crutcher", team: "Team Head Bussa's", bio: "Bio coming soon.", record: "45-36", since: 2020, seasons: 6 },
+  { name: "Eli Coppage", team: "Misty Mountain Gools", bio: "Bio coming soon.", record: "40-41", since: 2020, seasons: 6 },
+  { name: "JaDarion Derrick", team: "Dick Diamond", bio: "Bio coming soon.", record: "25-54", since: 2020, seasons: 6 },
+  { name: "Alex Evers", team: "Cream Team", bio: "Bio coming soon.", record: "33-35", since: 2021, seasons: 5 },
+  { name: "Gerald Jones", team: "Slim Pickens", bio: "Bio coming soon.", record: "27-15", since: 2023, seasons: 3 },
+];
+
+// ------------------------------------------------------------------
+// Calculation + render — no need to touch anything below this line.
+// ------------------------------------------------------------------
+
+function initials(name){
+  return name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
+}
+
+function statsFor(managerName){
+  const champYears = champions.filter(c => c.champion.includes(managerName)).map(c => c.year);
+  const runnerYears = champions.filter(c => c.runnerUp.includes(managerName)).map(c => c.year);
+  const lastYears = wallOfShame.filter(s => s.name.includes(managerName)).map(s => s.year);
+  return { champYears, runnerYears, lastYears };
+}
+
+function badgeList(years, cls, label){
+  if (years.length === 0) return `<span class="badge empty">No ${label} yet</span>`;
+  return years.map(y => `<span class="badge ${cls}">${cls === 'champ' ? '\u{1F3C6}' : ''} ${y}</span>`).join('');
+}
+
+function renderManagers(){
+  const grid = document.getElementById('managerGrid');
+  grid.innerHTML = managers.map(m => {
+    const stats = statsFor(m.name);
+    return `
+      <div class="manager-card">
+        <div class="manager-top">
+          <div class="avatar">${initials(m.name)}</div>
+          <div>
+            <div class="manager-name">${m.name}</div>
+            <div class="manager-team">${m.team}</div>
+          </div>
+        </div>
+
+        <div class="trophy-case">
+          <div class="trophy-case-label">Trophy Case</div>
+          ${badgeList(stats.champYears, 'champ', 'championships')}
+        </div>
+
+        <p class="manager-bio">${m.bio}</p>
+
+        <div class="stats-table">
+          <div class="stats-row">
+            <span class="stats-label">Since / Seasons</span>
+            <span class="stats-value">${m.since} &middot; ${m.seasons}</span>
+          </div>
+          <div class="stats-row">
+            <span class="stats-label">All-Time Record</span>
+            <span class="stats-value">${m.record}</span>
+          </div>
+          <div class="stats-row">
+            <span class="stats-label">Championships</span>
+            <span class="stats-value gold">${stats.champYears.length}</span>
+          </div>
+          <div class="stats-row">
+            <span class="stats-label">Runner-Up Finishes</span>
+            <span class="stats-value">${stats.runnerYears.length}</span>
+          </div>
+          <div class="stats-row">
+            <span class="stats-label">Last-Place Finishes</span>
+            <span class="stats-value">${stats.lastYears.length}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+renderManagers();
+</script>
+</body>
+</html>
