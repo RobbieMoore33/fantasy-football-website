@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recaps — Paideia Mafia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Bebas+Neue&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181f; --ink-2:#1b232d; --parchment:#efe4c9; --parchment-dim:#b9ad8f;
+    --gold:#c9a227; --gold-bright:#e4c856; --crimson:#7a1f2b; --crimson-bright:#a52a3a; --slate:#8b96a5;
+    --display:'Fraunces', serif; --jersey:'Bebas Neue', sans-serif;
+    --body:'Source Serif 4', serif; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--ink); color:var(--parchment); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  nav{ display:flex; align-items:center; justify-content:center; gap:28px; padding:22px 24px; border-bottom:1px solid rgba(201,162,39,.3); background:#0e131a; flex-wrap:wrap; }
+  nav a{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--slate); padding-bottom:4px; border-bottom:2px solid transparent; }
+  nav a:hover, nav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
+  .page-head{ text-align:center; padding:56px 24px 12px; }
+  .page-eyebrow{ font-family:var(--mono); letter-spacing:.35em; font-size:11px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; }
+  .page-title{ font-family:var(--display); font-weight:900; font-size:clamp(36px,7vw,64px); }
+  .page-sub{ font-family:var(--mono); font-size:12px; color:var(--slate); margin-top:14px; }
+
+  .recap-list{ max-width:820px; margin:50px auto 90px; padding:0 24px; display:flex; flex-direction:column; gap:20px; }
+  .recap-card{ background:var(--ink-2); border:1px solid rgba(201,162,39,.3); border-left:4px solid var(--gold); padding:28px 32px; }
+  .recap-year{ font-family:var(--jersey); font-size:34px; color:var(--gold); letter-spacing:.03em; }
+  .recap-headline{ font-family:var(--display); font-weight:700; font-size:20px; margin:6px 0 14px; }
+  .recap-body{ color:var(--parchment-dim); font-size:15px; margin-bottom:16px; }
+  .recap-badges{ display:flex; flex-wrap:wrap; gap:10px; }
+  .badge{ font-family:var(--mono); font-size:11px; padding:6px 10px; border-radius:2px; border:1px solid rgba(201,162,39,.4); }
+  .badge.champ{ background:rgba(201,162,39,.15); color:var(--gold-bright); }
+  .badge.shame{ background:rgba(122,31,43,.2); color:var(--crimson-bright); border-color:rgba(122,31,43,.5); }
+  .badge.neutral{ color:var(--slate); }
+
+  footer{ text-align:center; padding:40px 24px 70px; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--slate); }
+
+  @media (max-width:640px){ nav{ gap:16px; } .recap-card{ padding:22px 20px; } }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="team-managers.html">Managers</a>
+    <a href="records.html">Records</a>
+    <a href="season-2025.html">2025 Season</a>
+    <a href="recaps.html" class="active">Recaps</a>
+    <a href="rivalries.html">Rivalries</a>
+    <a href="standings.html">Standings</a>
+  </nav>
+
+  <div class="page-head">
+    <div class="page-eyebrow">The Archive</div>
+    <div class="page-title">Season Recaps</div>
+    <div class="page-sub">2020&ndash;2024 &middot; for the full 2025 breakdown, see the 2025 Season tab</div>
+  </div>
+
+  <div class="recap-list" id="recapList"></div>
+
+  <footer>Paideia Mafia &middot; Compiled from ESPN league data</footer>
+
+<script>
+const recaps = [
+  {
+    year: 2020,
+    headline: "Jehovah's Thiccness Opens the Books",
+    body: "Conner Kapperman's Jehovah's Thiccness went wire-to-wire, finishing the regular season 8-3 and rolling through the playoffs with a lopsided 340.64–222.96 title-game win over Paxton Smith's Team Smith to become the league's first-ever champion.",
+    champ: "Conner Kapperman", runnerUp: "Paxton Smith", third: "Collin Thul", shame: "Robbie Moore",
+  },
+  {
+    year: 2021,
+    headline: "The Thul Shed Wins It the Hard Way",
+    body: "Collin Thul edged EJ Crutcher's Team Ernie Wow Cakes in a nail-biting 255.22–249.34 championship — the closest title game in league history at the time. JaDarion Derrick's Your Father closed out a rough 3-9 season with the league's first repeat trip to the Wall of Shame.",
+    champ: "Collin Thul", runnerUp: "EJ Crutcher", third: "Conner Kapperman", shame: "JaDarion Derrick",
+  },
+  {
+    year: 2022,
+    headline: "Cream Team Rises",
+    body: "Alex Evers' Cream Team took down Conner Kapperman's Jehovah's Thiccness 203.6–184.96 in the final, giving Alex his first ring. The league shrank to 8 teams this season, tightening the playoff race considerably.",
+    champ: "Alex Evers", runnerUp: "Conner Kapperman", third: "EJ Crutcher", shame: "JaDarion Derrick",
+  },
+  {
+    year: 2023,
+    headline: "Robbie Moore's First Ring, Two Rookies Arrive",
+    body: "Robbie Moore's Unsolicited Dak Pics beat Eli Coppage's Misty Mountain Gools 201.86–181.98 for the title. The league expanded back to 10 teams as Cameron Kapperman and Gerald Jones both joined — Gerald immediately posted the league's best record at 11-3, while Cameron's Ducks and Field Goals landed in the Wall of Shame in his rookie year.",
+    champ: "Robbie Moore", runnerUp: "Eli Coppage", third: "Gerald Jones", shame: "Cameron Kapperman",
+  },
+  {
+    year: 2024,
+    headline: "Gerald Jones Breaks Through",
+    body: "Gerald Jones' Team Jones ran the table in the playoffs, closing out Collin Thul's The Thul Shed 172.72–119.18 for his first championship. JaDarion Derrick's D¡ck Diamond finished last for the third time in five seasons.",
+    champ: "Gerald Jones", runnerUp: "Collin Thul", third: "EJ Crutcher", shame: "JaDarion Derrick",
+  },
+];
+
+document.getElementById('recapList').innerHTML = recaps.map(r => `
+  <div class="recap-card">
+    <div class="recap-year">${r.year}</div>
+    <div class="recap-headline">${r.headline}</div>
+    <div class="recap-body">${r.body}</div>
+    <div class="recap-badges">
+      <span class="badge champ">🏆 Champion: ${r.champ}</span>
+      <span class="badge neutral">Runner-Up: ${r.runnerUp}</span>
+      <span class="badge neutral">3rd: ${r.third}</span>
+      <span class="badge shame">Wall of Shame: ${r.shame}</span>
+    </div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
