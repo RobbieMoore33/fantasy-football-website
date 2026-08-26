@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rivalries — Paideia Mafia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Bebas+Neue&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181f; --ink-2:#1b232d; --parchment:#efe4c9; --parchment-dim:#b9ad8f;
+    --gold:#c9a227; --gold-bright:#e4c856; --crimson:#7a1f2b; --crimson-bright:#a52a3a; --slate:#8b96a5;
+    --display:'Fraunces', serif; --jersey:'Bebas Neue', sans-serif;
+    --body:'Source Serif 4', serif; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--ink); color:var(--parchment); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  nav{ display:flex; align-items:center; justify-content:center; gap:28px; padding:22px 24px; border-bottom:1px solid rgba(201,162,39,.3); background:#0e131a; flex-wrap:wrap; }
+  nav a{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--slate); padding-bottom:4px; border-bottom:2px solid transparent; }
+  nav a:hover, nav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
+  .page-head{ text-align:center; padding:56px 24px 12px; }
+  .page-eyebrow{ font-family:var(--mono); letter-spacing:.35em; font-size:11px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; }
+  .page-title{ font-family:var(--display); font-weight:900; font-size:clamp(36px,7vw,64px); }
+  .page-sub{ font-family:var(--mono); font-size:12px; color:var(--slate); margin-top:14px; max-width:640px; margin-left:auto; margin-right:auto; }
+
+  .rivalry-grid{ max-width:1180px; margin:50px auto; padding:0 24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:20px; }
+  .rivalry-card{ background:var(--ink-2); border:1px solid rgba(201,162,39,.3); border-top:3px solid var(--gold); padding:26px; }
+  .rivalry-tag{ display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--ink); background:var(--gold); padding:3px 10px; border-radius:2px; margin-bottom:14px; }
+  .rivalry-name{ font-family:var(--display); font-weight:700; font-size:24px; margin-bottom:6px; }
+  .rivalry-matchup{ font-family:var(--mono); font-size:12px; color:var(--gold-bright); margin-bottom:14px; }
+  .rivalry-desc{ color:var(--parchment-dim); font-size:14.5px; margin-bottom:14px; }
+  .rivalry-record{ font-family:var(--jersey); font-size:22px; letter-spacing:.03em; color:var(--parchment); border-top:1px dashed rgba(239,228,201,.15); padding-top:12px; }
+  .rivalry-record .leader{ color:var(--gold); }
+
+  .section{ max-width:1180px; margin:0 auto; padding:20px 24px 90px; }
+  .section-head{ text-align:center; margin-bottom:36px; }
+  .section-eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.25em; text-transform:uppercase; color:var(--crimson-bright); margin-bottom:10px; }
+  .section-title{ font-family:var(--display); font-weight:700; font-size:clamp(26px,4vw,36px); }
+
+  table{ width:100%; border-collapse:collapse; }
+  thead tr{ background:var(--ink-2); border-bottom:2px solid var(--gold); }
+  th{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); text-align:left; padding:14px 16px; }
+  th:not(:first-child){ text-align:center; }
+  tbody tr{ border-bottom:1px solid rgba(239,228,201,.08); }
+  tbody tr:hover{ background:rgba(201,162,39,.06); }
+  td{ padding:13px 16px; font-family:var(--mono); font-size:13.5px; text-align:center; }
+  td:first-child{ text-align:left; font-family:var(--display); font-weight:600; font-size:15px; color:var(--parchment); }
+  .win-cell{ color:var(--gold); font-weight:600; }
+
+  .table-wrap{ overflow-x:auto; }
+  table{ min-width:600px; }
+
+  footer{ text-align:center; padding:40px 24px 70px; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--slate); }
+
+  @media (max-width:640px){ nav{ gap:16px; } }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="team-managers.html">Managers</a>
+    <a href="records.html">Records</a>
+    <a href="season-2025.html">2025 Season</a>
+    <a href="recaps.html">Recaps</a>
+    <a href="rivalries.html" class="active">Rivalries</a>
+    <a href="standings.html">Standings</a>
+  </nav>
+
+  <div class="page-head">
+    <div class="page-eyebrow">The Grudges</div>
+    <div class="page-title">Rivalries</div>
+    <div class="page-sub">Five pairings built from the real all-time head-to-head record &mdash; every manager gets a rival, one week a year is theirs.</div>
+  </div>
+
+  <div class="rivalry-grid" id="rivalryGrid"></div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">The Ledger</div>
+      <div class="section-title">All-Time Rivalry Records</div>
+    </div>
+    <div class="table-wrap">
+      <table id="ledgerTable">
+        <thead><tr><th>Manager</th><th>Rival</th><th>Series Record</th><th>Games Played</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>Paideia Mafia &middot; Rivalry records pulled from every regular-season &amp; playoff meeting since 2020</footer>
+
+<script>
+const rivalries = [
+  {
+    tag: "Rivalry",
+    name: "The Stalemate Bowl",
+    matchup: "Robbie Moore vs. Frank Brogden",
+    desc: "Dead even across every meeting since 2020 — a perfect coin flip, 12 games running.",
+    recordA: { name: "Robbie Moore", w: 6, l: 6 },
+    recordB: { name: "Frank Brogden", w: 6, l: 6 },
+  },
+  {
+    tag: "Rivalry",
+    name: "Diamonds & Cream",
+    matchup: "JaDarion Derrick vs. Alex Evers",
+    desc: "One of the closest series in the league — JaDarion holds a slim edge, but it's a real fight every time.",
+    recordA: { name: "JaDarion Derrick", w: 6, l: 5 },
+    recordB: { name: "Alex Evers", w: 5, l: 6 },
+  },
+  {
+    tag: "Rivalry",
+    name: "The Kapperman Bowl",
+    matchup: "Conner Kapperman vs. Cameron Kapperman",
+    desc: "It's family. The two Kappermans have only crossed paths five times, and Cameron holds the early bragging rights.",
+    recordA: { name: "Cameron Kapperman", w: 3, l: 2 },
+    recordB: { name: "Conner Kapperman", w: 2, l: 3 },
+  },
+  {
+    tag: "Rivalry",
+    name: "Shed vs. Pickens",
+    matchup: "Collin Thul vs. Gerald Jones",
+    desc: "Gerald's late arrival to the league hasn't stopped him from building a slight lead in this one.",
+    recordA: { name: "Gerald Jones", w: 4, l: 3 },
+    recordB: { name: "Collin Thul", w: 3, l: 4 },
+  },
+  {
+    tag: "Rivalry",
+    name: "Battle of the E's",
+    matchup: "EJ Crutcher vs. Eli Coppage",
+    desc: "The longest-running matchup on this list — 15 meetings since 2020, and Eli has the upper hand.",
+    recordA: { name: "Eli Coppage", w: 9, l: 6 },
+    recordB: { name: "EJ Crutcher", w: 6, l: 9 },
+  },
+];
+
+document.getElementById('rivalryGrid').innerHTML = rivalries.map(r => {
+  const leaderIsA = r.recordA.w >= r.recordB.w;
+  return `
+    <div class="rivalry-card">
+      <span class="rivalry-tag">${r.tag}</span>
+      <div class="rivalry-name">${r.name}</div>
+      <div class="rivalry-matchup">${r.matchup}</div>
+      <div class="rivalry-desc">${r.desc}</div>
+      <div class="rivalry-record">
+        <span class="${leaderIsA ? 'leader' : ''}">${r.recordA.name.split(' ')[0]} ${r.recordA.w}</span>
+        &nbsp;&ndash;&nbsp;
+        <span class="${!leaderIsA ? 'leader' : ''}">${r.recordB.w} ${r.recordB.name.split(' ')[0]}</span>
+      </div>
+    </div>
+  `;
+}).join('');
+
+const ledgerRows = [];
+rivalries.forEach(r => {
+  ledgerRows.push({ manager: r.recordA.name, rival: r.recordB.name, w: r.recordA.w, l: r.recordA.l });
+  ledgerRows.push({ manager: r.recordB.name, rival: r.recordA.name, w: r.recordB.w, l: r.recordB.l });
+});
+
+document.querySelector('#ledgerTable tbody').innerHTML = ledgerRows.map(row => `
+  <tr>
+    <td>${row.manager}</td>
+    <td>${row.rival}</td>
+    <td class="${row.w > row.l ? 'win-cell' : ''}">${row.w}-${row.l}</td>
+    <td>${row.w + row.l}</td>
+  </tr>
+`).join('');
+</script>
+</body>
+</html>
