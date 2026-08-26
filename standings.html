@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Standings — Paideia Mafia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Bebas+Neue&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181f; --ink-2:#1b232d; --parchment:#efe4c9; --parchment-dim:#b9ad8f;
+    --gold:#c9a227; --gold-bright:#e4c856; --crimson:#7a1f2b; --crimson-bright:#a52a3a; --slate:#8b96a5;
+    --display:'Fraunces', serif; --jersey:'Bebas Neue', sans-serif;
+    --body:'Source Serif 4', serif; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--ink); color:var(--parchment); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  nav{ display:flex; align-items:center; justify-content:center; gap:28px; padding:22px 24px; border-bottom:1px solid rgba(201,162,39,.3); background:#0e131a; flex-wrap:wrap; }
+  nav a{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--slate); padding-bottom:4px; border-bottom:2px solid transparent; }
+  nav a:hover, nav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
+  .page-head{ text-align:center; padding:56px 24px 12px; }
+  .page-eyebrow{ font-family:var(--mono); letter-spacing:.35em; font-size:11px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; }
+  .page-title{ font-family:var(--display); font-weight:900; font-size:clamp(36px,7vw,64px); }
+  .page-sub{ font-family:var(--mono); font-size:12px; color:var(--slate); margin-top:14px; }
+
+  .section{ max-width:1180px; margin:0 auto; padding:40px 24px 70px; }
+  .section-head{ text-align:center; margin-bottom:36px; }
+  .section-eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.25em; text-transform:uppercase; color:var(--crimson-bright); margin-bottom:10px; }
+  .section-title{ font-family:var(--display); font-weight:700; font-size:clamp(26px,4vw,36px); }
+  .section-note{ font-family:var(--mono); font-size:11.5px; color:var(--slate); text-align:center; margin-top:14px; }
+
+  .table-wrap{ overflow-x:auto; }
+  table{ width:100%; border-collapse:collapse; min-width:560px; }
+  thead tr{ background:var(--ink-2); border-bottom:2px solid var(--gold); }
+  th{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); text-align:left; padding:14px 16px; white-space:nowrap; }
+  th:not(:first-child):not(:nth-child(2)){ text-align:center; }
+  tbody tr{ border-bottom:1px solid rgba(239,228,201,.08); }
+  tbody tr:hover{ background:rgba(201,162,39,.06); }
+  td{ padding:13px 16px; font-family:var(--mono); font-size:13px; text-align:center; white-space:nowrap; }
+  td:first-child{ text-align:left; font-family:var(--jersey); font-size:15px; color:var(--gold); }
+  td:nth-child(2){ text-align:left; font-family:var(--display); font-weight:600; font-size:15px; color:var(--parchment); }
+  .champ-row td:first-child{ color:var(--gold-bright); }
+
+  .h2h-table{ min-width:900px; }
+  .h2h-table th, .h2h-table td{ padding:10px 12px; font-size:12px; }
+  .h2h-table td:first-child{ font-family:var(--display); font-weight:600; font-size:13.5px; text-align:left; color:var(--parchment); }
+  .h2h-table .diag{ color:var(--slate); }
+
+  footer{ text-align:center; padding:40px 24px 70px; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--slate); }
+
+  @media (max-width:640px){ nav{ gap:16px; } }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="team-managers.html">Managers</a>
+    <a href="records.html">Records</a>
+    <a href="season-2025.html">2025 Season</a>
+    <a href="recaps.html">Recaps</a>
+    <a href="rivalries.html">Rivalries</a>
+    <a href="standings.html" class="active">Standings</a>
+  </nav>
+
+  <div class="page-head">
+    <div class="page-eyebrow">Where Things Stand</div>
+    <div class="page-title">Standings</div>
+    <div class="page-sub">2025 final results &middot; updates once the 2026 season kicks off</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Final Results</div>
+      <div class="section-title">2025 Standings</div>
+    </div>
+    <div class="table-wrap">
+      <table id="standingsTable">
+        <thead><tr><th>Finish</th><th>Team</th><th>Manager</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Every Matchup Since 2020</div>
+      <div class="section-title">All-Time Head-to-Head</div>
+      <div class="section-note">Includes every regular-season and playoff meeting, 2020&ndash;2025. Row = that manager's record vs. the column.</div>
+    </div>
+    <div class="table-wrap">
+      <table class="h2h-table" id="h2hCurrent">
+        <thead><tr id="h2hCurrentHead"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Retired Rosters</div>
+      <div class="section-title">vs. Former Managers</div>
+    </div>
+    <div class="table-wrap">
+      <table class="h2h-table" id="h2hFormer">
+        <thead><tr id="h2hFormerHead"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>Paideia Mafia &middot; Pulled directly from ESPN league data</footer>
+
+<script>
+const standings2025 = [
+  { finish: "Champion", team: "Sons of Ares", manager: "Robbie Moore" },
+  { finish: "Runner-Up", team: "Slim Pickens", manager: "Gerald Jones" },
+  { finish: "3rd", team: "Misty Mountain Gools", manager: "Eli Coppage" },
+  { finish: "4th", team: "Jehovah's Thiccness", manager: "Conner Kapperman" },
+  { finish: "5th", team: "McYakkin'", manager: "Cameron Kapperman" },
+  { finish: "6th", team: "Kript Keepers", manager: "Frank Brogden" },
+  { finish: "7th", team: "Cream Team", manager: "Alex Evers" },
+  { finish: "8th", team: "The Thul Shed", manager: "Collin Thul" },
+  { finish: "9th", team: "D¡ck Diamond", manager: "JaDarion Derrick" },
+  { finish: "10th", team: "Team Head Bussa's", manager: "EJ Crutcher" },
+];
+
+document.querySelector('#standingsTable tbody').innerHTML = standings2025.map((s, i) => `
+  <tr class="${i === 0 ? 'champ-row' : ''}">
+    <td>${s.finish}</td>
+    <td>${s.team}</td>
+    <td style="text-align:left; color:var(--parchment-dim);">${s.manager}</td>
+  </tr>
+`).join('');
+
+const managers = ["Robbie Moore","Conner Kapperman","Frank Brogden","Collin Thul","Cameron Kapperman","EJ Crutcher","Eli Coppage","JaDarion Derrick","Alex Evers","Gerald Jones"];
+const firstNames = managers.map(m => m.split(' ')[0]);
+
+const h2h = {
+  "Robbie Moore":      {"Conner Kapperman":"4-6","Frank Brogden":"6-6","Collin Thul":"4-7","Cameron Kapperman":"4-2","EJ Crutcher":"6-8","Eli Coppage":"8-6","JaDarion Derrick":"7-2","Alex Evers":"2-5","Gerald Jones":"3-2"},
+  "Conner Kapperman":  {"Robbie Moore":"6-4","Frank Brogden":"6-4","Collin Thul":"10-5","Cameron Kapperman":"2-3","EJ Crutcher":"3-5","Eli Coppage":"6-4","JaDarion Derrick":"8-4","Alex Evers":"6-4","Gerald Jones":"3-4"},
+  "Frank Brogden":     {"Robbie Moore":"6-6","Conner Kapperman":"4-6","Collin Thul":"6-5","Cameron Kapperman":"6-4","EJ Crutcher":"4-8","Eli Coppage":"6-9","JaDarion Derrick":"7-3","Alex Evers":"5-3","Gerald Jones":"0-3"},
+  "Collin Thul":       {"Robbie Moore":"7-4","Conner Kapperman":"5-10","Frank Brogden":"5-6","Cameron Kapperman":"0-3","EJ Crutcher":"7-2","Eli Coppage":"1-6","JaDarion Derrick":"9-3","Alex Evers":"7-5","Gerald Jones":"3-4"},
+  "Cameron Kapperman": {"Robbie Moore":"2-4","Conner Kapperman":"3-2","Frank Brogden":"4-6","Collin Thul":"3-0","EJ Crutcher":"2-4","Eli Coppage":"5-1","JaDarion Derrick":"2-1","Alex Evers":"2-5","Gerald Jones":"0-4"},
+  "EJ Crutcher":       {"Robbie Moore":"8-6","Conner Kapperman":"5-3","Frank Brogden":"8-4","Collin Thul":"2-7","Cameron Kapperman":"4-2","Eli Coppage":"6-9","JaDarion Derrick":"6-3","Alex Evers":"6-3","Gerald Jones":"3-5"},
+  "Eli Coppage":       {"Robbie Moore":"6-8","Conner Kapperman":"4-6","Frank Brogden":"9-6","Collin Thul":"6-1","Cameron Kapperman":"1-5","EJ Crutcher":"9-6","JaDarion Derrick":"8-6","Alex Evers":"2-5","Gerald Jones":"1-2"},
+  "JaDarion Derrick":  {"Robbie Moore":"2-7","Conner Kapperman":"4-8","Frank Brogden":"3-7","Collin Thul":"3-9","Cameron Kapperman":"1-2","EJ Crutcher":"3-6","Eli Coppage":"6-8","Alex Evers":"6-5","Gerald Jones":"0-6"},
+  "Alex Evers":        {"Robbie Moore":"5-2","Conner Kapperman":"4-6","Frank Brogden":"3-5","Collin Thul":"5-7","Cameron Kapperman":"5-2","EJ Crutcher":"3-6","Eli Coppage":"5-2","JaDarion Derrick":"5-6","Gerald Jones":"4-2"},
+  "Gerald Jones":      {"Robbie Moore":"2-3","Conner Kapperman":"4-3","Frank Brogden":"3-0","Collin Thul":"4-3","Cameron Kapperman":"4-0","EJ Crutcher":"5-3","Eli Coppage":"2-1","JaDarion Derrick":"6-0","Alex Evers":"2-4"},
+};
+
+const former = ["Paxton Smith","McClain Moore","Houston Brown"];
+const h2hFormer = {
+  "Robbie Moore":      {"Paxton Smith":"1-1","McClain Moore":"0-1","Houston Brown":"2-0"},
+  "Conner Kapperman":  {"Paxton Smith":"2-0","McClain Moore":"1-1","Houston Brown":"2-0"},
+  "Frank Brogden":     {"Paxton Smith":"1-1","McClain Moore":"0-1","Houston Brown":"1-0"},
+  "Collin Thul":       {"Paxton Smith":"1-0","McClain Moore":"2-1","Houston Brown":"2-0"},
+  "Cameron Kapperman": {"Paxton Smith":"0-0","McClain Moore":"0-0","Houston Brown":"0-0"},
+  "EJ Crutcher":       {"Paxton Smith":"0-2","McClain Moore":"0-1","Houston Brown":"1-0"},
+  "Eli Coppage":       {"Paxton Smith":"0-2","McClain Moore":"0-1","Houston Brown":"1-0"},
+  "JaDarion Derrick":  {"Paxton Smith":"0-1","McClain Moore":"0-2","Houston Brown":"2-0"},
+  "Alex Evers":        {"Paxton Smith":"0-0","McClain Moore":"0-0","Houston Brown":"1-1"},
+  "Gerald Jones":      {"Paxton Smith":"0-0","McClain Moore":"0-0","Houston Brown":"0-0"},
+};
+
+document.getElementById('h2hCurrentHead').innerHTML = '<th>Manager</th>' + firstNames.map(n => `<th>${n}</th>`).join('');
+document.querySelector('#h2hCurrent tbody').innerHTML = managers.map(m => `
+  <tr>
+    <td>${m}</td>
+    ${managers.map(opp => opp === m ? '<td class="diag">—</td>' : `<td>${h2h[m][opp]}</td>`).join('')}
+  </tr>
+`).join('');
+
+document.getElementById('h2hFormerHead').innerHTML = '<th>Manager</th>' + former.map(n => `<th>${n.split(' ')[0]}</th>`).join('');
+document.querySelector('#h2hFormer tbody').innerHTML = managers.map(m => `
+  <tr>
+    <td>${m}</td>
+    ${former.map(f => `<td>${h2hFormer[m][f]}</td>`).join('')}
+  </tr>
+`).join('');
+</script>
+</body>
+</html>
