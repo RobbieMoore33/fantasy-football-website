@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025 Season — Paideia Mafia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Bebas+Neue&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181f;
+    --ink-2:#1b232d;
+    --parchment:#efe4c9;
+    --parchment-dim:#b9ad8f;
+    --gold:#c9a227;
+    --gold-bright:#e4c856;
+    --crimson:#7a1f2b;
+    --crimson-bright:#a52a3a;
+    --slate:#8b96a5;
+    --display:'Fraunces', serif;
+    --jersey:'Bebas Neue', sans-serif;
+    --body:'Source Serif 4', serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+
+  nav{
+    display:flex; align-items:center; justify-content:center; gap:32px;
+    padding:22px 24px; border-bottom:1px solid rgba(201,162,39,.3);
+    background:#0e131a; flex-wrap:wrap;
+  }
+  nav a{
+    font-family:var(--mono); font-size:12px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--slate);
+    padding-bottom:4px; border-bottom:2px solid transparent;
+  }
+  nav a:hover, nav a.active{ color:var(--gold); border-bottom-color:var(--gold); }
+
+  .page-head{ text-align:center; padding:56px 24px 12px; }
+  .page-eyebrow{
+    font-family:var(--mono); letter-spacing:.35em; font-size:11px;
+    color:var(--gold); text-transform:uppercase; margin-bottom:14px;
+  }
+  .page-title{ font-family:var(--display); font-weight:900; font-size:clamp(36px,7vw,64px); }
+  .page-sub{ font-family:var(--mono); font-size:12px; color:var(--slate); margin-top:14px; }
+
+  /* ===== RECAP ARTICLE ===== */
+  .article-wrap{ max-width:760px; margin:50px auto 90px; padding:0 24px; }
+  .article-card{
+    background:var(--ink-2);
+    border:1px solid rgba(201,162,39,.3);
+    padding:44px 40px;
+    position:relative;
+  }
+  .article-card::before, .article-card::after{
+    content:""; position:absolute; width:14px; height:14px; border:1px solid var(--gold);
+  }
+  .article-card::before{ top:10px; left:10px; border-right:none; border-bottom:none; }
+  .article-card::after{ bottom:10px; right:10px; border-left:none; border-top:none; }
+  .dispatch-label{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.25em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:14px;
+  }
+  .article-card h2{
+    font-family:var(--display); font-weight:700; font-size:clamp(24px,4vw,32px);
+    margin-bottom:24px; line-height:1.2;
+  }
+  .article-card p{ color:var(--parchment-dim); font-size:16px; margin-bottom:16px; }
+  .article-card strong{ color:var(--parchment); font-family:var(--display); font-weight:600; }
+  .section-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold-bright); display:block; margin-top:22px; margin-bottom:8px;
+  }
+
+  /* ===== MANAGER RECAP GRID ===== */
+  .section{ max-width:1180px; margin:0 auto; padding:20px 24px 70px; }
+  .section-head{ text-align:center; margin-bottom:40px; }
+  .section-eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.25em;
+    text-transform:uppercase; color:var(--crimson-bright); margin-bottom:10px;
+  }
+  .section-title{ font-family:var(--display); font-weight:700; font-size:clamp(26px,4vw,38px); }
+
+  .recap-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:18px;
+  }
+  .recap-card{
+    background:var(--ink-2); border:1px solid rgba(239,228,201,.12);
+    border-top:3px solid var(--gold); padding:22px;
+  }
+  .recap-name{ font-family:var(--display); font-weight:700; font-size:18px; }
+  .recap-meta{
+    font-family:var(--mono); font-size:11px; color:var(--gold); margin-top:2px; margin-bottom:12px;
+  }
+  .recap-body{ color:var(--parchment-dim); font-size:14px; }
+
+  /* ===== AWARDS ===== */
+  .awards-table{ width:100%; border-collapse:collapse; max-width:900px; margin:0 auto; }
+  .awards-table tr{ border-bottom:1px solid rgba(239,228,201,.1); }
+  .awards-table td{ padding:16px 12px; vertical-align:top; }
+  .award-name{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--gold); width:220px; white-space:nowrap;
+  }
+  .award-detail{ font-family:var(--display); font-size:15.5px; }
+  .award-detail .sub{ font-family:var(--body); color:var(--slate); font-size:13.5px; display:block; margin-top:2px; }
+  .wall-of-shame .award-detail{ color:var(--crimson-bright); }
+
+  .note{
+    max-width:900px; margin:24px auto 0; text-align:center;
+    font-family:var(--mono); font-size:11px; color:var(--slate);
+  }
+
+  footer{
+    text-align:center; padding:40px 24px 70px; font-family:var(--mono);
+    font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--slate);
+  }
+
+  @media (max-width:640px){
+    nav{ gap:16px; }
+    .article-card{ padding:30px 22px; }
+    .award-name{ width:auto; white-space:normal; }
+    .awards-table td{ display:block; width:100% !important; padding:8px 4px; }
+    .awards-table tr{ display:block; padding:10px 0; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="team-managers.html">Managers</a>
+    <a href="records.html">Records</a>
+    <a href="season-2025.html" class="active">2025 Season</a>
+  </nav>
+
+  <div class="page-head">
+    <div class="page-eyebrow">Paideia Mafia Dispatch</div>
+    <div class="page-title">2025 Season</div>
+    <div class="page-sub">Final standings, playoff bracket &amp; awards &mdash; straight from the record</div>
+  </div>
+
+  <!-- RECAP ARTICLE -->
+  <div class="article-wrap">
+    <div class="article-card">
+      <div class="dispatch-label">Paideia Mafia Dispatch</div>
+      <h2>Sons of Ares Take the Crown &mdash; Robbie Moore's Second Ring in Three Years</h2>
+
+      <p>Robbie Moore's <strong>Sons of Ares</strong> entered the playoffs as the No. 1 seed at 9-5 &mdash; the best point differential in the league at +14.5 &mdash; and closed the deal, going a perfect 2-0 in the bracket to win it all. It's Moore's second title in three seasons, having also won it in 2023.</p>
+
+      <p>A first-round bye sent Sons of Ares straight to the semifinals, where they handled Eli Coppage's Misty Mountain Gools 163.56&ndash;132.56. In the final, Robbie held off Gerald Jones' Slim Pickens 137.5&ndash;126.26 &mdash; a tight, 11.24-point championship game to close the season.</p>
+
+      <span class="section-label">The Regular Season</span>
+      <p>Three teams tied atop the standings at 9-5 &mdash; Sons of Ares, Slim Pickens, and Kript Keepers &mdash; with seeding coming down to point differential. The single biggest week belonged to Eli Coppage's Misty Mountain Gools, who dropped 230.36 in Week 12 to demolish Frank Brogden's Kript Keepers 230.36&ndash;100.32, a 130-point margin and the most lopsided result of the year. On the other end, Collin Thul's Thul Shed posted the season's low point, just 67.42 in Week 10.</p>
+
+      <p>Even the eventual champion wasn't immune to heartbreak: Robbie Moore's Sons of Ares lost the tightest game of the regular season in Week 3, falling to Cameron Kapperman's McYakkin' by just 0.14 points, 125.94&ndash;125.80.</p>
+
+      <span class="section-label">Getting There</span>
+      <p>The other side of the bracket also earned its bye: Slim Pickens rolled through, beating Conner Kapperman's Jehovah's Thiccness 158.38&ndash;140.6 to reach the final. Kapperman's squad had been dangerous in Round 1, knocking off Cameron Kapperman's McYakkin' 172.22&ndash;128.0, but couldn't get past Slim Pickens.</p>
+
+      <p>On the other side of Round 1, Misty Mountain Gools edged Frank Brogden's Kript Keepers 146.7&ndash;139.6 &mdash; notable since Brogden's squad actually tied for the league's best regular-season record at 9-5, but the tiebreakers left them on the outside of the top seeds looking in.</p>
+
+      <span class="section-label">The Bottom of the Bracket</span>
+      <p>Misty Mountain Gools bounced back from their semifinal loss to beat Jehovah's Thiccness 114.58&ndash;102.38 and claim third place. Down in the true consolation bracket, Alex Evers' Cream Team put together a run, beating The Thul Shed twice &mdash; including a nail-biting 129.02&ndash;124.18 finish, the closest game of the entire postseason.</p>
+
+      <p>At the very bottom, EJ Crutcher's Team Head Bussa's finished the regular season 5-9 &mdash; the league's worst record &mdash; and closed out the year in the same spot: dead last, losing the final placement game to JaDarion Derrick's D¡ck Diamond 115.98&ndash;103.46.</p>
+    </div>
+  </div>
+
+  <!-- MANAGER RECAPS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Manager by Manager</div>
+      <div class="section-title">2025 Season in Review</div>
+    </div>
+    <div class="recap-grid" id="recapGrid"></div>
+  </div>
+
+  <!-- AWARDS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">The Hardware</div>
+      <div class="section-title">2025 Awards</div>
+    </div>
+    <table class="awards-table" id="awardsTable"></table>
+    <div class="note">Every score and stat on this page is pulled directly from ESPN's league data &mdash; all 14 regular-season weeks plus the full playoff bracket.</div>
+  </div>
+
+  <footer>Paideia Mafia &middot; 2025 Season &middot; Compiled from ESPN league data</footer>
+
+<script>
+const recaps = [
+  { name: "Robbie Moore", team: "Sons of Ares", meta: "9-5 · #1 Seed · CHAMPION", body: "Best point differential in the league (+14.5), a first-round bye, and a clean 2-0 run through the bracket. Second title in three years." },
+  { name: "Gerald Jones", team: "Slim Pickens", meta: "9-5 · #2 Seed · Runner-Up", body: "Matched the league's best record and rode a bye all the way to the final, where an 11-point loss to Sons of Ares was the difference." },
+  { name: "Eli Coppage", team: "Misty Mountain Gools", meta: "6-8 · #6 Seed · 3rd Place", body: "A losing regular season didn't stop a real playoff run — knocked off Kript Keepers in Round 1 before falling to the eventual champs, then bounced back to take third." },
+  { name: "Conner Kapperman", team: "Jehovah's Thiccness", meta: "7-7 · #5 Seed · 4th Place", body: "Opened the playoffs with a win over McYakkin', but couldn't solve Slim Pickens or Misty Mountain Gools after that." },
+  { name: "Cameron Kapperman", team: "McYakkin'", meta: "7-7 · #4 Seed · 5th Place", body: "A .500 season ended in the first round, but closed strong in the consolation ladder to finish mid-pack." },
+  { name: "Frank Brogden", team: "Kript Keepers", meta: "9-5 · #3 Seed · 6th Place", body: "The regular season's cruelest story — tied for the league's best record, then absorbed the most lopsided loss of the year (230.36–100.32) in Week 12, and a Round 1 playoff exit sent them to 6th anyway." },
+  { name: "Alex Evers", team: "Cream Team", meta: "6-8 · #8 Seed · 7th Place", body: "Made the most of a low seed, winning three straight consolation games — including the season's closest finish, a 129.02–124.18 nail-biter over The Thul Shed." },
+  { name: "Collin Thul", team: "The Thul Shed", meta: "6-8 · #7 Seed · 8th Place", body: "Posted the single highest score of the entire postseason (183.16), but it came in a loss and the results didn't follow the rest of the way." },
+  { name: "JaDarion Derrick", team: "D¡ck Diamond", meta: "6-8 · #9 Seed · 9th Place", body: "Split the difference in the bottom bracket, finishing just ahead of Team Head Bussa's to avoid the Wall of Shame." },
+  { name: "EJ Crutcher", team: "Team Head Bussa's", meta: "5-9 · #10 Seed · LAST PLACE", body: "The league's worst regular-season record carried straight through to a last-place finish in the bracket. Wall of Shame, 2025." },
+];
+
+const awards = [
+  { name: "Champion", detail: "Robbie Moore", sub: "Sons of Ares — 9-5, #1 seed, went 2-0 in the bracket" },
+  { name: "Runner-Up", detail: "Gerald Jones", sub: "Slim Pickens — lost the final by 11.24 points" },
+  { name: "Third Place", detail: "Eli Coppage", sub: "Misty Mountain Gools" },
+  { name: "Best Regular Season", detail: "Robbie Moore", sub: "9-5, league-best +14.5 point differential, #1 seed" },
+  { name: "Toughest Break", detail: "Frank Brogden", sub: "Kript Keepers — tied for the league's best record (9-5), finished 6th" },
+  { name: "Highest Postseason Score", detail: "Collin Thul", sub: "The Thul Shed — 183.16 (in a losing effort)" },
+  { name: "Closest Playoff Game", detail: "Alex Evers over Collin Thul", sub: "129.02–124.18, 7th place game" },
+  { name: "Highest Single Week", detail: "Eli Coppage", sub: "Misty Mountain Gools — 230.36 in Week 12" },
+  { name: "Lowest Single Week", detail: "Collin Thul", sub: "The Thul Shed — 67.42 in Week 10" },
+  { name: "Closest Regular-Season Game", detail: "Cameron Kapperman over Robbie Moore", sub: "125.94–125.80, Week 3 — a 0.14-point margin" },
+  { name: "Biggest Blowout", detail: "Eli Coppage over Frank Brogden", sub: "230.36–100.32, Week 12 — a 130.04-point margin" },
+  { name: "Wall of Shame", detail: "EJ Crutcher", sub: "Team Head Bussa's — 5-9, worst record, last-place finish" },
+];
+
+document.getElementById('recapGrid').innerHTML = recaps.map(r => `
+  <div class="recap-card">
+    <div class="recap-name">${r.name}</div>
+    <div class="recap-meta">${r.team} &middot; ${r.meta}</div>
+    <div class="recap-body">${r.body}</div>
+  </div>
+`).join('');
+
+document.getElementById('awardsTable').innerHTML = awards.map(a => `
+  <tr class="${a.name === 'Wall of Shame' ? 'wall-of-shame' : ''}">
+    <td class="award-name">${a.name}</td>
+    <td class="award-detail">${a.detail}<span class="sub">${a.sub}</span></td>
+  </tr>
+`).join('');
+</script>
+</body>
+</html>
